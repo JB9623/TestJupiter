@@ -1,0 +1,38 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@babel/core": "^7.17.9",
+    "@blockworks-foundation/mango-client": "^3.4.4",
+    "@jup-ag/core": "^1.0.0-beta.21",
+    "@jup-ag/react-hook": "^1.0.0-beta.21",
+    "@project-serum/serum": "0.13.55",
+    "@project-serum/sol-wallet-adapter": "0.2.0",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "babel-node": "^0.0.1-security",
+    "babel-preset-es2015": "^6.24.1",
+    "next": "12.1.4",
+    "next-compose-plugins": "^2.2.1",
+    "next-fonts": "^1.5.1",
+    "next-optimized-images": "^2.6.2",
+    "next-with-less": "^2.0.5",
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.23",
+    "@types/react": "18.0.1",
+    "@types/react-dom": "18.0.0",
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.4",
+    "typescript": "4.6.3"
+  }
+}
