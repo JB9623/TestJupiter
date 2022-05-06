@@ -1,57 +1,13 @@
-/** @type {import('next').NextConfig} */
-const webpack = require("webpack");
-const withSass = require("@zeit/next-sass");
-const withLess = require("@zeit/next-less");
-const withCss = require("@zeit/next-css");
-const withFonts = require("next-fonts");
-const withPlugins = require("next-compose-plugins");
-const optimizedImages = require("next-optimized-images");
+const withLess = require('next-with-less');
+const withPlugins = require('next-compose-plugins');
+const nextTranslate = require('next-translate');
 
+const plugins = [[withLess, {}], [nextTranslate]];
 
-const nextConfig = {
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(eot|woff|woff2|ogg|mp3|wav|ttf|otf|ico|mpe?g)$/i,
-      loader: "file-loader",
-      options: {
-        name: "[path][name].[ext]",
-      },
-    });
-
-    if (config.module.css) {
-      config.module.css.config.plugins.push(
-        new FilterWarningsPlugin({
-          exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
-        })
-      );
-    }
-
-    return config;
+module.exports = withPlugins(plugins, {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['i2.wp.com'], // This is just to allow images from i2.wp.com, you can add more domains if you wish
   },
-  env: {},
-};
-module.exports = withPlugins(
-  [
-    [
-      optimizedImages,
-      {
-        handleImages: ["jpeg", "png", "gif", "svg", "ico"],
-      },
-    ],
-    withFonts,
-    withCss,
-    [withSass],
-    [
-      withLess,
-      {
-        lessLoaderOptions: {
-          javascriptEnabled: true,
-        },
-      },
-    ],
-  ],
-  {
-    ...nextConfig,
-    experimental: { granularChunks: true },
-  }
-);
+});
