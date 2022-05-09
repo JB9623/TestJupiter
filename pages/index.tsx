@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { Card, Row, Col } from 'antd';
+import { Connection } from "@solana/web3.js";
 import useTranslation from 'next-translate/useTranslation';
+import { JupiterProvider } from '@jup-ag/react-hook';
 
 const Home: NextPage = () => {
   const { t } = useTranslation('common');
   const [coins, setCoins] = useState<any[]>([]);
+  const connection:Connection = null;
 
   useEffect(() => {
     const fetchCoinGeckoList = async () => {
@@ -22,7 +25,11 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <>
+    <JupiterProvider
+      connection={connection}
+      cluster="mainnet-beta"
+      userPublicKey={undefined}       
+    >
       <Head>
         <meta charSet='utf-8' />
         <meta
@@ -46,7 +53,7 @@ const Home: NextPage = () => {
           })}
         </Row>
       </main>
-    </>
+    </JupiterProvider>
   );
 };
 
