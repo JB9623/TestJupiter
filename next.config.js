@@ -10,6 +10,17 @@ const optimizedImages = require("next-optimized-images");
 
 const nextConfig = {
   webpack: (config) => {
+
+    config.node = {
+      fs: 'empty'
+    }
+        
+    config.module.rules.push({
+      include: /node_modules/,
+      test: /\.mjs$/,
+      type: 'javascript/auto'
+    })  
+
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ogg|mp3|wav|ttf|otf|ico|mpe?g)$/i,
       loader: "file-loader",
